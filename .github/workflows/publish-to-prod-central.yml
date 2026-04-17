@@ -23,4 +23,4 @@ jobs:
         run: |
           BALA_URL=${{ github.event.inputs.released-asset }}
           wget $BALA_URL
-          bal push $(basename $BALA_URL)
+          bal push ./$(basename $BALA_URL)
