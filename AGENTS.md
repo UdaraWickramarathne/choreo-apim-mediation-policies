@@ -6,7 +6,7 @@ A collection of out-of-the-box mediation and guardrail policies for WSO2 Choreo 
 
 ## Build & Test Commands
 
-**Prerequisites:** Ballerina 2201.5.5, Python 3.10+ with `toml`, `semantic-version`, `gitpython`, `PyGithub` packages.
+**Prerequisites:** Ballerina 2201.12.8, Python 3.10+ with `toml`, `semantic-version`, `gitpython`, `PyGithub` packages.
 
 ```bash
 # Test a single policy
@@ -43,6 +43,26 @@ Every policy implements up to three annotated flow functions:
 - Return `http:Response` to short-circuit with a custom response
 - Return `false` to abort
 - Return `error` to signal failure
+
+### Package.md — UI Metadata
+
+Every policy package contains a `Package.md` file that drives how the policy is rendered in the Choreo UI. The file has two required sections:
+
+```markdown
+# <Policy Display Name>
+
+## Overview
+<Short description shown in the policy list and detail view.>
+
+## Usage
+<Longer description of how to configure and attach the policy, including a bullet list of each parameter with its user-facing name and meaning.>
+```
+
+- **Policy display name** (H1) — shown in the UI policy picker.
+- **Overview** — rendered as the policy description card.
+- **Usage** — rendered in the policy configuration panel; parameter names in backticks must match the user-facing names (after the backslash-space escape is resolved, e.g., `Header Name`).
+
+When adding or modifying a policy, keep `Package.md` in sync with the actual parameters defined in the Ballerina source. Mismatched parameter names or missing entries cause the UI to display incorrect or incomplete configuration fields.
 
 ### Parameter Naming Convention
 
